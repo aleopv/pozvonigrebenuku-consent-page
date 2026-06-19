@@ -393,6 +393,15 @@ input:focus-visible + .checkbox {
   outline-offset: 2px;
 }
 
+.price-line {
+  display: block;
+  margin-top: 2px;
+}
+
+.price-line strong {
+  white-space: nowrap;
+}
+
 .check-row input {
   position: absolute;
   width: 1px;
