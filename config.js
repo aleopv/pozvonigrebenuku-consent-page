@@ -13,23 +13,23 @@ window.CONSENT_PAGE_CONFIG = {
 
   documents: {
     offer: {
-      url: "#",
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     },
     privacy: {
-      url: "#",
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     },
     personalData: {
-      url: "#",
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     },
     aiConversation: {
-      url: "#",
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     },
     subscription: {
-      url: "#",
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     }
   }

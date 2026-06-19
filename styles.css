@@ -368,6 +368,23 @@ input:focus-visible + .checkbox {
   overflow-wrap: break-word;
 }
 
+.inline-document-link {
+  color: #263fc9;
+  font-weight: 800;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+.inline-document-link:hover {
+  color: #9f190f;
+}
+
+.inline-document-link:focus-visible {
+  outline: 2px solid #263fc9;
+  outline-offset: 2px;
+}
+
 .check-row input {
   position: absolute;
   width: 1px;

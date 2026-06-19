@@ -90,6 +90,32 @@
     if (dialog?.open) dialog.close();
   };
 
+  const setupInlineDocumentLinks = () => {
+    document.querySelectorAll("[data-inline-document]").forEach((link) => {
+      const key = link.dataset.inlineDocument;
+      const url = config.documents?.[key]?.url;
+
+      if (url && url !== "#") {
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener";
+      } else {
+        link.href = "#";
+        link.setAttribute("role", "button");
+        link.setAttribute("aria-haspopup", "dialog");
+      }
+
+      link.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        if (!url || url === "#") {
+          event.preventDefault();
+          openDocuments(key);
+        }
+      });
+    });
+  };
+
   const applyConfig = () => {
     document.querySelectorAll("[data-price]").forEach((element) => {
       element.textContent = config.price || "10 000 ₽";
@@ -235,6 +261,7 @@
   });
 
   applyConfig();
+  setupInlineDocumentLinks();
   updateState();
   window.requestAnimationFrame(updateState);
   window.setTimeout(updateState, 0);
