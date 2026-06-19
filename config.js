@@ -24,11 +24,19 @@ window.CONSENT_PAGE_CONFIG = {
       url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     },
+    recording: {
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
+      version: "replace-with-current-version"
+    },
     aiConversation: {
       url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     },
     subscription: {
+      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
+      version: "replace-with-current-version"
+    },
+    marketing: {
       url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
       version: "replace-with-current-version"
     }
