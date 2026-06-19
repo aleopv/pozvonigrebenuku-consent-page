@@ -11,7 +11,6 @@
   const notice = document.querySelector("#form-notice");
   const noticeText = notice?.querySelector("p");
   const dialog = document.querySelector("#documents-dialog");
-  const documentsButton = document.querySelector("#documents-button");
   const closeDialogButtons = document.querySelectorAll("[data-close-dialog]");
   const params = new URLSearchParams(window.location.search);
   const telegram = window.Telegram?.WebApp;
@@ -217,7 +216,6 @@
     updateState();
   });
 
-  documentsButton?.addEventListener("click", () => openDocuments());
   closeDialogButtons.forEach((button) => button.addEventListener("click", closeDocuments));
 
   dialog?.addEventListener("click", (event) => {

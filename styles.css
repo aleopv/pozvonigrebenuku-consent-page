@@ -1398,6 +1398,14 @@ input:focus-visible + .checkbox {
   }
 }
 
+.actions {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.back-button {
+  grid-column: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
