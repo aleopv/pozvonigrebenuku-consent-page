@@ -11,34 +11,36 @@ window.CONSENT_PAGE_CONFIG = {
   // Кнопка «Назад» возвращает на стартовый экран основного бота.
   defaultBackUrl: "https://t.me/grebenyuk_call_bot?start=start",
 
+  // Production PDF кладем в ./static и версионируем прямо в имени файла.
+  // Пример: url: "./static/offer-v2026-06-29.pdf", version: "v2026-06-29"
   documents: {
     offer: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/offer-v2026-06-29.pdf",
+      version: "v2026-06-29"
     },
     privacy: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/privacy-v2026-06-29.pdf",
+      version: "v2026-06-29"
     },
     personalData: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/personal-data-v2026-06-29.pdf",
+      version: "v2026-06-29"
     },
     recording: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/recording-v2026-06-29.pdf",
+      version: "v2026-06-29"
     },
     aiConversation: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/recording-v2026-06-29.pdf",
+      version: "v2026-06-29"
     },
     subscription: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/subscription-v2026-06-29.pdf",
+      version: "v2026-06-29"
     },
     marketing: {
-      url: "https://drive.google.com/file/d/1YOiVHTsf0qtYiI6jU8u93wRfWxArWkb2/view?usp=sharing",
-      version: "replace-with-current-version"
+      url: "./static/marketing-v2026-06-29.pdf",
+      version: "v2026-06-29"
     }
   }
 };
