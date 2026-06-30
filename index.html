@@ -106,7 +106,15 @@
               </label>
 
               <label class="check-row">
-                <input type="checkbox" name="marketing">
+                <input type="checkbox" name="eligible_request" required>
+                <span class="checkbox" aria-hidden="true"></span>
+                <span>
+                  Я подтверждаю, что мой запрос не относится к темам, по которым сервис не проводит разбор.
+                </span>
+              </label>
+
+              <label class="check-row">
+                <input type="checkbox" name="marketing" required>
                 <span class="checkbox" aria-hidden="true"></span>
                 <span>
                   Я согласен получать
@@ -117,13 +125,13 @@
 
             <button class="select-required" type="button" id="select-required">
               <span aria-hidden="true">✓</span>
-              Выбрать обязательные отметки
+              Выбрать все отметки
             </button>
           </section>
 
           <div class="notice" id="form-notice" role="status" aria-live="polite">
             <span aria-hidden="true">i</span>
-            <p>Для перехода к оплате нужны все отметки, кроме рекламной рассылки. Рассылку можно оставить выключенной.</p>
+            <p>Для перехода к оплате нужны все отметки.</p>
           </div>
         </div>
 

@@ -14,7 +14,7 @@
   const closeDialogButtons = document.querySelectorAll("[data-close-dialog]");
   const telegram = window.Telegram?.WebApp;
 
-  const defaultNotice = "Для перехода к оплате нужны все отметки, кроме рекламной рассылки. Рассылку можно оставить выключенной.";
+  const defaultNotice = "Для перехода к оплате нужны все отметки.";
 
   const safeReturnUrl = (value) => {
     if (!value) return "";
@@ -45,8 +45,8 @@
     continueButton.disabled = !isComplete;
     continueButton.querySelector("span").textContent = "Продолжить";
     selectRequiredButton.innerHTML = isComplete
-      ? "<span aria-hidden=\"true\">↺</span> Снять обязательные отметки"
-      : "<span aria-hidden=\"true\">✓</span> Выбрать обязательные отметки";
+      ? "<span aria-hidden=\"true\">↺</span> Снять все отметки"
+      : "<span aria-hidden=\"true\">✓</span> Выбрать все отметки";
 
     if (notice?.classList.contains("is-error") && isComplete) {
       setNotice(defaultNotice);
@@ -157,7 +157,7 @@
     event.preventDefault();
 
     if (!allRequiredChecked()) {
-      setNotice("Отметь, пожалуйста, все обязательные пункты, чтобы продолжить.", "error");
+      setNotice("Отметь, пожалуйста, все пункты, чтобы продолжить.", "error");
       requiredInputs.find((input) => !input.checked)?.focus();
       return;
     }
