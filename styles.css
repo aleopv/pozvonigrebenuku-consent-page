@@ -1470,6 +1470,48 @@ input:focus-visible + .checkbox {
   grid-column: 1;
 }
 
+@media (max-width: 820px) {
+  .consent-page {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
+  .check-row {
+    min-height: max(48px, 3.25em);
+    grid-template-columns: 44px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+  }
+
+  .checkbox {
+    width: 40px;
+    height: 40px;
+    margin-top: 1px;
+    border-width: 3px;
+  }
+
+  .check-row input:checked + .checkbox::after {
+    width: 11px;
+    height: 20px;
+    border-width: 0 4px 4px 0;
+  }
+
+  .actions {
+    position: fixed;
+    z-index: 80;
+    left: 50%;
+    bottom: 0;
+    width: min(calc(100% - 16px), 680px);
+    margin: 0;
+    padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    background: linear-gradient(to top, rgba(8, 8, 6, .98) 0 78%, rgba(8, 8, 6, 0));
+  }
+
+  .primary-button {
+    min-height: 66px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
