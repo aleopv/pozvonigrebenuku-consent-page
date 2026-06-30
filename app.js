@@ -14,7 +14,7 @@
   const closeDialogButtons = document.querySelectorAll("[data-close-dialog]");
   const telegram = window.Telegram?.WebApp;
 
-  const defaultNotice = "Для перехода к оплате нужны все отметки.";
+  const defaultNotice = "Чтобы продолжить, подтвердите все пункты.";
 
   const safeReturnUrl = (value) => {
     if (!value) return "";
@@ -157,7 +157,7 @@
     event.preventDefault();
 
     if (!allRequiredChecked()) {
-      setNotice("Отметь, пожалуйста, все пункты, чтобы продолжить.", "error");
+      setNotice("Подтвердите все пункты, чтобы продолжить.", "error");
       requiredInputs.find((input) => !input.checked)?.focus();
       return;
     }

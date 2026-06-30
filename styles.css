@@ -495,6 +495,9 @@ input:focus-visible + .checkbox {
 
 .notice p {
   margin: 0;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.35;
@@ -1010,7 +1013,7 @@ input:focus-visible + .checkbox {
   }
 
   .notice {
-    align-items: start;
+    align-items: center;
   }
 
   .notice p {
@@ -1257,6 +1260,7 @@ input:focus-visible + .checkbox {
   }
 
   .notice p {
+    min-height: 28px;
     font-size: 11px;
     line-height: 1.22;
   }
