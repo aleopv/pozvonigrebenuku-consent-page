@@ -12,12 +12,7 @@
   const noticeText = notice?.querySelector("p");
   const dialog = document.querySelector("#documents-dialog");
   const closeDialogButtons = document.querySelectorAll("[data-close-dialog]");
-  const params = new URLSearchParams(window.location.search);
   const telegram = window.Telegram?.WebApp;
-  const state = {
-    isSubmitting: false,
-    recoveryTimer: null
-  };
 
   const defaultNotice = "Для перехода к оплате нужны все отметки, кроме рекламной рассылки. Рассылку можно оставить выключенной.";
 
@@ -33,8 +28,6 @@
     }
   };
 
-  const returnUrl = safeReturnUrl(config.defaultReturnUrl)
-    || "https://t.me/";
   const backUrl = safeReturnUrl(config.defaultBackUrl)
     || "https://t.me/";
 
@@ -49,10 +42,8 @@
 
   const updateState = () => {
     const isComplete = allRequiredChecked();
-    continueButton.disabled = state.isSubmitting || !isComplete;
-    continueButton.querySelector("span").textContent = state.isSubmitting
-      ? "Сохраняем"
-      : "Продолжить";
+    continueButton.disabled = !isComplete;
+    continueButton.querySelector("span").textContent = "Продолжить";
     selectRequiredButton.innerHTML = isComplete
       ? "<span aria-hidden=\"true\">↺</span> Снять обязательные отметки"
       : "<span aria-hidden=\"true\">✓</span> Выбрать обязательные отметки";
@@ -60,12 +51,6 @@
     if (notice?.classList.contains("is-error") && isComplete) {
       setNotice(defaultNotice);
     }
-  };
-
-  const resetSubmittingState = () => {
-    window.clearTimeout(state.recoveryTimer);
-    state.isSubmitting = false;
-    updateState();
   };
 
   const scheduleStateSync = () => {
@@ -138,67 +123,6 @@
     });
   };
 
-  const buildPayload = () => {
-    const data = new FormData(form);
-    const documents = Object.fromEntries(
-      Object.entries(config.documents || {}).map(([key, value]) => [
-        key,
-        value?.version || "not-set"
-      ])
-    );
-
-    return {
-      type: "consent_accepted",
-      nextStep: "payment_ready",
-      sessionId: params.get("session_id") || "",
-      userId: params.get("user_id") || "",
-      acceptedAt: new Date().toISOString(),
-      documents,
-      consents: {
-        offer: data.has("offer"),
-        personalData: data.has("personal_data"),
-        recording: data.has("recording"),
-        aiProcessing: data.has("ai_processing"),
-        recurringPayment: data.has("recurring_payment"),
-        marketing: data.has("marketing")
-      }
-    };
-  };
-
-  const saveConsent = async (payload) => {
-    if (!config.submitUrl) {
-      localStorage.setItem("pg:last-consent", JSON.stringify(payload));
-      return { demo: true };
-    }
-
-    const response = await fetch(config.submitUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      throw new Error(`Consent endpoint returned ${response.status}`);
-    }
-
-    const contentType = response.headers.get("content-type") || "";
-    return contentType.includes("application/json") ? response.json() : {};
-  };
-
-  const finishFlow = (payload, responseData) => {
-    const nextUrl = safeReturnUrl(responseData?.returnUrl) || returnUrl;
-
-    if (telegram?.sendData && params.get("telegram_webapp") === "1") {
-      telegram.sendData(JSON.stringify(payload));
-      window.setTimeout(() => telegram.close(), 250);
-      return;
-    }
-
-    window.location.assign(nextUrl);
-  };
-
   requiredInputs.forEach((input) => {
     input.addEventListener("change", updateState);
     input.addEventListener("input", updateState);
@@ -238,24 +162,7 @@
       return;
     }
 
-    if (state.isSubmitting) return;
-    state.isSubmitting = true;
-    updateState();
-    setNotice("Фиксируем согласия и возвращаем тебя в бот для перехода к оплате…");
-
-    try {
-      const payload = buildPayload();
-      const responseData = await saveConsent(payload);
-      setNotice("Согласия приняты. В боте откроется следующий шаг — переход к оплате.", "success");
-      finishFlow(payload, responseData);
-      state.recoveryTimer = window.setTimeout(() => {
-        if (document.visibilityState === "visible") resetSubmittingState();
-      }, 2500);
-    } catch (error) {
-      console.error(error);
-      setNotice("Не удалось сохранить согласия. Проверь, пожалуйста, соединение и попробуй ещё раз.", "error");
-      resetSubmittingState();
-    }
+    setNotice(defaultNotice);
   });
 
   applyConfig();
@@ -264,11 +171,7 @@
   window.requestAnimationFrame(updateState);
   window.setTimeout(updateState, 0);
   window.setTimeout(updateState, 250);
-  window.addEventListener("pageshow", resetSubmittingState);
   window.addEventListener("focus", scheduleStateSync);
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") resetSubmittingState();
-  });
   telegram?.ready?.();
   telegram?.expand?.();
 })();
