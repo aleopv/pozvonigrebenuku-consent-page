@@ -1337,7 +1337,11 @@ input:focus-visible + .checkbox {
   }
 
   .intro__lead {
-    display: none;
+    display: block;
+    grid-column: 1 / -1;
+    margin-top: 6px;
+    font-size: 11.5px;
+    line-height: 1.18;
   }
 
   .progress {
