@@ -37,6 +37,10 @@ Telegram: стоимость подписки
 - `defaultBackUrl` — Telegram deep link логотипа;
 - `documents` — URL и версии документов.
 
+### Локальные ресурсы
+
+Страница не должна зависеть от внешних CDN. Шрифты подключены из `assets/fonts/`, Telegram WebApp SDK — из `assets/vendor/telegram-web-app.js`.
+
 ### Документы
 
 PDF-файлы документов кладутся в папку `static/`. Версия документа обязательно указывается прямо в имени файла, например:
